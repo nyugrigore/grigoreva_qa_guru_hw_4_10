@@ -96,34 +96,9 @@ class RegistrationPage:
         )
         return self
 
-    def should_have_registered(
-        self,
-        full_name,
-        email,
-        gender,
-        phone_number,
-        date_of_birth,
-        subjects,
-        hobbies,
-        photo,
-        address,
-        state_city,
-    ):
-        browser.element(".table").all("td").even.should(
-            have.exact_texts(
-                full_name,
-                email,
-                gender,
-                phone_number,
-                date_of_birth,
-                subjects,
-                hobbies,
-                photo,
-                address,
-                state_city,
-            )
-        )
-        return self
+    @property
+    def registered_user_data(self):
+        return browser.element(".table").all("td").even
 
     def close(self):
         browser.element('[id="closeLargeModal"]').perform(command.js.click)

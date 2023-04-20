@@ -1,3 +1,5 @@
+from selene import have
+
 from models.pages import RegistrationPage
 
 
@@ -15,7 +17,7 @@ def test_demoqa_registration_positive(browser_configs):
 
     registration_page.fill_gender("Male")
     registration_page.fill_phone_number("9111111111")
-    registration_page.fill_date_of_birth('1991', 'November', '03')
+    registration_page.fill_date_of_birth("1991", "November", "03")
     registration_page.fill_subject("ma")
     registration_page.scroll_down()
     registration_page.fill_hobbies("Sports")
@@ -28,17 +30,19 @@ def test_demoqa_registration_positive(browser_configs):
 
     # THEN
     registration_page.should_have_successful_result()
-    registration_page.should_have_registered(
-        'User Default',
-        'default@mail.com',
-        'Male',
-        '9111111111',
-        '03 November,1991',
-        'Maths',
-        'Sports',
-        'icon.jpg',
-        'Saint P Nevskiy prospect 111',
-        'NCR Delhi'
+    registration_page.registered_user_data.should(
+        have.exact_texts(
+            "User Default",
+            "default@mail.com",
+            "Male",
+            "9111111111",
+            "03 November,1991",
+            "Maths",
+            "Sports",
+            "icon.jpg",
+            "Saint P Nevskiy prospect 111",
+            "NCR Delhi",
+        )
     )
 
     registration_page.close()
