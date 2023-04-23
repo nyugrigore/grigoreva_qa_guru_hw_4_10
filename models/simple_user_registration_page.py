@@ -26,7 +26,7 @@ class SimpleRegistrationPage:
         self.submit_click = browser.element("#submit")
 
     def open(self):
-        browser.open("https://demoqa.com/automation-practice-form")
+        browser.open('/automation-practice-form')
         browser.driver.execute_script("window.scrollBy(0, 100)")
 
     def fill_1st_name(self, value):
