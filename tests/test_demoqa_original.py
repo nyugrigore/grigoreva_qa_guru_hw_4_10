@@ -6,7 +6,7 @@ def test_demoqa_registration_positive(browser_configs):
     """
     Позитивный тест на регистрацию: все поля
     """
-    browser.open('https://demoqa.com/automation-practice-form')
+    browser.open('/automation-practice-form')
     browser.element('#firstName').type('User')
     browser.element('#lastName').type('Default')
     browser.element('#userEmail').type('default@mail.com')
@@ -21,7 +21,7 @@ def test_demoqa_registration_positive(browser_configs):
     browser.element('#subjectsInput').type('ma').press_enter()
     browser.driver.execute_script('window.scrollBy(0, 100)')
     browser.element('[for="hobbies-checkbox-1"]').click()
-    browser.element('#uploadPicture').send_keys(os.getcwd() + '/icon.jpg')
+    browser.element('#uploadPicture').send_keys(os.getcwd() + 'resources/icon.jpg')
     browser.element('#currentAddress').type('City Saint-P')
     browser.element('#react-select-3-input').should(be.blank).type('Rajasthan').press_enter()
     browser.element('#react-select-4-input').should(be.blank).type('Jaiselmer').press_enter().press_enter()
