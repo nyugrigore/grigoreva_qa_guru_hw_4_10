@@ -2,6 +2,8 @@ import os
 
 from selene import browser, have, command
 
+import tests
+
 
 class RegistrationPage:
     def __init__(self):
@@ -24,7 +26,7 @@ class RegistrationPage:
         self.submit = browser.element("#submit")
 
     def open(self):
-        browser.open('/automation-practice-form')
+        browser.open("/automation-practice-form")
         return self
 
     def fill_1st_name(self, value):
@@ -71,8 +73,11 @@ class RegistrationPage:
         return self
 
     def upload_picture(self, value):
-        self.photo.send_keys(os.getcwd() + f'/resources/{value}')
-        return self
+        self.photo.send_keys(
+            os.path.abspath(
+                os.path.join(os.path.dirname(tests.__file__), f"resources/{value}")
+            )
+        )
 
     def fill_date_of_birth(self, year, month, day):
         self.date_of_birth_input.click()
