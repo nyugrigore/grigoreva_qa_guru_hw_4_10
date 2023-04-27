@@ -12,7 +12,7 @@ import allure
 @allure.story("Новый пользователь может зарегистрироваться на сайте https://demoqa.com")
 @allure.link("https://demoqa.com/automation-practice-form", name="Registration form")
 def test_register_user(setup_browser):
-    registration_page = SimpleRegistrationPage()
+    registration_page = SimpleRegistrationPage(setup_browser)
 
     with allure.step("Открываем страницу регистрации"):
         registration_page.open()
