@@ -1,9 +1,9 @@
 from allure_commons.types import Severity
-
 from data.users import def_user
 from models.simple_user_registration_page import SimpleRegistrationPage
 
 import allure
+
 
 @allure.tag("critical")
 @allure.severity(Severity.CRITICAL)
@@ -11,8 +11,8 @@ import allure
 @allure.feature("Регистрация нового пользователя")
 @allure.story("Новый пользователь может зарегистрироваться на сайте https://demoqa.com")
 @allure.link("https://demoqa.com/automation-practice-form", name="Registration form")
-def test_register_user(browser_configs):
-    registration_page = SimpleRegistrationPage()
+def test_register_user(setup_browser):
+    registration_page = SimpleRegistrationPage(setup_browser)
 
     with allure.step("Открываем страницу регистрации"):
         registration_page.open()
@@ -25,3 +25,4 @@ def test_register_user(browser_configs):
 
     with allure.step("Проверяем сохраненные данные пользователя"):
         registration_page.should_have_submited(def_user)
+
